@@ -1,9 +1,14 @@
-// mapConfig is a global variable where config data is saved in config.js
+// store locally global variable
+var config 			= mapConfig;
 
-var mapCenter 	= JSON.parse(mapConfig.center);
-var mapZoom 	= mapConfig.zoom;
+var mapOptions = {
+	containerId : 'map',
+	center 		: JSON.parse(config.center) || [52.5897007687178, 52.734375],
+	zoom 		: config.zoom || 4
+}
 
-var mymap = L.map('map').setView(mapCenter, mapZoom);
+var myMap = map.actions.create(mapOptions);
 
-cartoLayer.render(mapConfig, mymap);
-mapLayers.render(mapConfig, mymap);
+for (const layer of config.layers) {
+	map.renderLayer(layer,config,myMap);
+}
