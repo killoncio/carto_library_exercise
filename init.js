@@ -9,6 +9,9 @@ var mapOptions = {
 
 var myMap = map.actions.create(mapOptions);
 
-for (const layer of config.layers) {
-	map.renderLayer(layer,config,myMap);
+if (config.layers) {
+	for (const layer of config.layers) {
+		map.actions.add(layer,config,myMap);
+	}
 }
+
