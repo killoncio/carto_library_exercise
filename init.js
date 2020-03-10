@@ -1,8 +1,9 @@
-import * from './configFile.js';
-import * from './render_layers.js';
-import * from './base_map.js';
+// mapConfig is a global variable where config data is saved in config.js
 
-var mymap = L.map('map').setView([51.505, -0.09], 15);
-var configFile = getConfigFile();
-renderInfo(configFile, mymap);
-renderLayers(configFile, mymap);
+var mapCenter 	= JSON.parse(mapConfig.center);
+var mapZoom 	= mapConfig.zoom;
+
+var mymap = L.map('map').setView(mapCenter, mapZoom);
+
+cartoLayer.render(mapConfig, mymap);
+mapLayers.render(mapConfig, mymap);
